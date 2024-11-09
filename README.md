@@ -78,12 +78,12 @@ Execute as migrations:
 php artisan migrate
 ```
 
-### ⚙️ Executando testes
-
-Popule a base de dados:
+Você pode popular a base de dados para testar os endpoints:
 ```sh
 php artisan db:seed
 ```
+
+### ⚙️ Executando testes
 
 Para rodar os teste do PHPUnit:
 ```sh
