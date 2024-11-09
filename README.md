@@ -73,7 +73,7 @@ Gere a key do JWT para criação de tokens:
 php artisan jwt:secret
 ```
 
-Execute as migrations:
+Execute as migrations para criar a base de dados e as tabelas:
 ```sh
 php artisan migrate
 ```
