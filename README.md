@@ -19,7 +19,7 @@ Caso queira testar os endpoints da API:
 
 Clone o repositório:
 ```sh
-git clone -b laravel-11-with-php-8.3 https://github.com/especializati/setup-docker-laravel.git app-laravel
+git clone https://github.com/cristian-braga/travel_orders_api.git travel_orders_api
 ```
 
 Entre na pasta do projeto:
