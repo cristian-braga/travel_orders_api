@@ -68,6 +68,11 @@ Gere a key do projeto Laravel:
 php artisan key:generate
 ```
 
+Gere a key do JWT para criação de tokens:
+```sh
+php artisan jwt:secret
+```
+
 Execute as migrations:
 ```sh
 php artisan migrate
