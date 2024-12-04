@@ -78,12 +78,84 @@ Execute as migrations para criar a base de dados e as tabelas:
 php artisan migrate
 ```
 
-### ⚙️ Executando testes
-
 Popule a base de dados para testar os endpoints:
 ```sh
 php artisan db:seed
 ```
+
+## 📄 Endpoints
+
+### Autenticação:
+
+```sh
+POST api/login
+```
+  - Realiza o login do usuário e retorna um token de autenticação.
+  - Parâmetros:
+    - `email`
+    - `password`
+  - Resposta:
+    - `access_token`
+    - **401 Unauthorized**: Se as credenciais forem inválidas.
+
+```sh
+POST api/logout
+```
+  - Realiza o logout do usuário.
+  - Requer autenticação via token (Bearer token).
+  - Resposta:
+    - **200 OK**: Retorna uma mensagem de sucesso indicando que o logout foi realizado.
+    - **401 Unauthorized**: Se o token fornecido não for válido.
+
+### Pedidos de Viagem:
+
+**Autenticação necessária**: Todos os endpoints abaixo requerem autenticação via token (usuário logado).
+
+```sh
+GET api/orders
+```
+  - Lista todos os pedidos de viagem.
+  - Filtra pelo `status` (solicitado, aprovado, cancelado): `?status={status}`.
+  - Resposta:
+    - **200 OK**: Retorna uma lista de pedidos de viagem.
+    - **401 Unauthorized**: Se o usuário não estiver autenticado.
+
+```sh
+POST api/orders
+```
+  - Cria um novo pedido de viagem.
+  - Parâmetros:
+    - `solicitante`
+    - `destino`
+    - `data_ida`
+    - `data_volta`
+  - Resposta:
+    - **201 Created**: Retorna os dados do pedido de viagem recém-criado.
+    - **422 Unprocessable Content**: Se algum dos parâmetros obrigatórios estiver ausente ou for inválido.
+
+```sh
+GET api/orders/{order}
+```
+  - Exibe os detalhes de um pedido de viagem específico.
+  - Parâmetros:
+    - `order`: ID do pedido de viagem.
+  - Resposta:
+    - **200 OK**: Retorna os detalhes do pedido.
+    - **404 Not Found**: Se o pedido de viagem com o ID fornecido não existir.
+
+```sh
+PUT api/orders/{order}
+```
+  - Atualiza um pedido de viagem específico.
+  - Parâmetros:
+    - `order`: ID do pedido de viagem.
+    - `status`
+  - Resposta:
+    - **200 OK**: Retorna os dados atualizados do pedido de viagem.
+    - **404 Not Found**: Se o pedido de viagem com o ID fornecido não existir.
+    - **422 Unprocessable Content**: Se o parâmetro `status` for inválido.
+
+## ⚙️ Executando testes
 
 Para rodar os teste do PHPUnit:
 ```sh
